@@ -25,6 +25,7 @@
       "package": "com.charan42003.orwellianai"
     },
     "web": {
+
       "favicon": "./assets/icon.png"
     },
     "extra": {
@@ -32,6 +33,6 @@
         "projectId": "c5c9ddab-fb17-401c-9acc-eff04ecd384b"
       }
     },
-    "owner": "charan42003"
+    "owner": "vsanjay"
   }
 }
