@@ -29,6 +29,7 @@ const Results = ({ navigation, route }) => {
   const [risk_score, setrisk_score] = useState("");
   const [domain, setdomain] = useState("");
   const [status_code, setstatus_code] = useState("");
+  const [server, setServer] = useState("");
   const [adult, setadult] = useState("");
   const [ml_result, setMl_Result] = useState("safe");
   const [screenshot, setScreenshot] = useState(null);
@@ -47,10 +48,11 @@ const Results = ({ navigation, route }) => {
         }),
       };
       const data = await fetch(
-        "https://orwellian-ai.onrender.com/check/url-check",
+        "http://localhost:8080/check/url-check",
         requestOptions
-      );
+      ); //"https://orwellian-ai.onrender.com/check/url-check",
       const response = await data.json();
+      console.log(response);
       response.msg && alert(response.msg);
       response.ss && setScreenshot(response.ss);
       const final_data = response.urlInfo;
@@ -64,6 +66,8 @@ const Results = ({ navigation, route }) => {
       setrisk_score(final_data.risk_score);
       setdomain(final_data.domain);
       setstatus_code(final_data.status_code);
+      setServer(final_data.server);
+      
       if (final_data.adult) {
         setadult("true");
       } else {
@@ -275,6 +279,33 @@ const Results = ({ navigation, route }) => {
             </View>
           </View>
         </View>
+
+        {/* Server  */}
+        <View style={style.result_wrap}>
+          <View style={style.icon_wrap}>
+            <Image
+              source={require("../assets/icons/status_code.png")}
+              style={style.icon_img}
+            />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",  
+              gap: 10,
+            }}
+          >
+            <View>
+              <Text style={style.result_title}>Server :</Text>
+            </View>
+            <View>
+              <Text style={style.result_text}>{server}</Text>
+            </View>
+          </View>
+        </View>
+
 
         {/* adult content  */}
         <View style={style.result_wrap}>

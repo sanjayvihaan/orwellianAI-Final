@@ -28,15 +28,16 @@ const LoginPage = ({ navigation }) => {
       }),
     };
     const data = await fetch(
-      "https://orwellian-ai.onrender.com/users/login",
+      "http://localhost:8080/users/login",
       requestOptions
-    );
+    ); //"https://orwellian-ai.onrender.com/users/login",
     const token_obj = await data.json();
 
     if (token_obj.msg) {
       alert(token_obj.msg);
     }
     const token = token_obj.token;
+    console.log(token);
 
     if (token) {
       await AsyncStorage.setItem("userAuth", token);
